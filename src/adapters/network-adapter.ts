@@ -8,10 +8,10 @@ export interface Request {
   headers: Headers
 }
 
-export interface Response {
+export interface Response<Body = unknown> {
   status: number
   headers: Headers
-  body: unknown
+  body: Body
 }
 
 export interface NetworkAdapter {

@@ -3,6 +3,7 @@ import { assertStatus } from './assertions.js'
 
 export interface HttpRequest<ResponseType = any> {
   expect: (status: number) => Promise<ResponseType>
+  raw: () => Promise<Response<ResponseType>>
 }
 
 export function requestFromAsync<ResponseType> (getResponse: () => PromiseLike<Response>): HttpRequest<ResponseType> {
@@ -12,6 +13,10 @@ export function requestFromAsync<ResponseType> (getResponse: () => PromiseLike<R
       assertStatus(response, statusNumber)
       // We have absolutely no type safety here!
       return response.body as any
+    },
+
+    async raw () {
+      return (await getResponse()) as Response<ResponseType>
     }
   }
 }
