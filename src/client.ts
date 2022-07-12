@@ -1,7 +1,7 @@
-import { Cookie, parseCookies } from './cookies.js'
-import { CookieStore } from './stores/cookie-store.js'
-import { CaseInsensitiveHttpVerb, NetworkAdapter } from './adapters/network-adapter.js'
+import { CaseInsensitiveHttpVerb, NetworkAdapter, Request, Response } from './adapters/network-adapter.js'
 import { HttpRequest, requestFromAsync } from './request.js'
+
+export type Middleware = (request: Request, next: (modified: Request) => Promise<Response>) => PromiseLike<Response>
 
 export type RequestMethod = <ResponseType = any>(path: string) => HttpRequest<ResponseType>
 export type RequestMethodWithData = <ResponseType = any>(path: string, data?: any) => HttpRequest<ResponseType>
@@ -13,19 +13,27 @@ export interface HttpClient {
   put: RequestMethodWithData
   patch: RequestMethodWithData
   delete: RequestMethod
-  setCookie: (cookie: Cookie) => void
+  use: (middleware: Middleware) => void
 }
 
-export function client (baseUrl: string | URL, adapter: NetworkAdapter, store: CookieStore): HttpClient {
+async function processMiddleware (adapter: NetworkAdapter, request: Request, middleware: readonly Middleware[], offset = 0): Promise<Response> {
+  if (offset >= middleware.length) {
+    return await adapter.sendRequest(request)
+  }
+  const next = async (modified: Request): Promise<Response> => await processMiddleware(adapter, modified, middleware, offset + 1)
+  return await middleware[offset](request, next)
+}
+
+export function client (baseUrl: string | URL, adapter: NetworkAdapter): HttpClient {
+  const middlewareStack: Middleware[] = []
+
   const request: HttpClient['request'] = (verb, path, data) => requestFromAsync(async () => {
-    const response = await adapter.sendRequest({
+    return await processMiddleware(adapter, {
       url: new URL(path, baseUrl),
       method: verb,
-      data,
-      cookies: store.cookies
-    })
-    parseCookies(response.headers).forEach((cookie) => store.putCookie(cookie))
-    return response
+      body: data,
+      headers: new Headers()
+    }, middlewareStack)
   })
 
   return {
@@ -35,6 +43,8 @@ export function client (baseUrl: string | URL, adapter: NetworkAdapter, store: C
     put: (...args) => request('PUT', ...args),
     patch: (...args) => request('PATCH', ...args),
     delete: (...args) => request('DELETE', ...args),
-    setCookie: (cookie) => store.putCookie(cookie)
+    use: (middleware) => {
+      middlewareStack.push(middleware)
+    }
   }
 }

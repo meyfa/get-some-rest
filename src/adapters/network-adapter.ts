@@ -1,13 +1,11 @@
-import { Cookie } from '../cookies.js'
-
 export type HttpVerb = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 export type CaseInsensitiveHttpVerb = Uppercase<HttpVerb> | Lowercase<HttpVerb>
 
 export interface Request {
   url: URL
   method: CaseInsensitiveHttpVerb
-  data?: any | undefined
-  cookies?: readonly Cookie[]
+  body?: any | undefined
+  headers: Headers
 }
 
 export interface Response {

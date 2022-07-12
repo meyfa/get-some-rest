@@ -1,5 +1,4 @@
 import { NetworkAdapter, Request } from './network-adapter.js'
-import { joinCookies } from '../cookies.js'
 
 export function fetchNetworkAdapter (): NetworkAdapter {
   return {
@@ -7,7 +6,7 @@ export function fetchNetworkAdapter (): NetworkAdapter {
       const fetchResponse = await fetch(request.url, {
         method: request.method,
         headers: buildHeaders(request),
-        body: transformRequestBody(request.data)
+        body: transformRequestBody(request.body)
       })
 
       return {
@@ -19,19 +18,11 @@ export function fetchNetworkAdapter (): NetworkAdapter {
   }
 }
 
-function buildHeaders (request: Request): Record<string, string> {
-  const headers = {}
+function buildHeaders (request: Request): Headers {
+  const headers = new Headers(request.headers)
 
-  if (request.data != null) {
-    Object.assign(headers, {
-      'Content-Type': 'application/json'
-    })
-  }
-
-  if (request.cookies != null && request.cookies.length > 0) {
-    Object.assign(headers, {
-      Cookie: joinCookies(request.cookies)
-    })
+  if (request.body != null && !headers.has('content-type')) {
+    headers.set('content-type', 'application/json')
   }
 
   return headers
