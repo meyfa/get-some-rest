@@ -1,10 +1,26 @@
+import { CookieStore } from './stores/cookie-store.js'
+import { Middleware } from './client.js'
+
 export interface Cookie {
   key: string
   value: string
 }
 
-export function parseCookies (headers: Headers): Cookie[] {
+export function cookieMiddleware (store: CookieStore): Middleware {
+  return async (req, next) => {
+    const cookieString = joinCookies(store.cookies)
+    if (cookieString !== '') {
+      req.headers.set('cookie', cookieString)
+    }
+    const res = await next(req)
+    parseCookies(res.headers).forEach((cookie) => store.putCookie(cookie))
+    return res
+  }
+}
+
+function parseCookies (headers: Headers): Cookie[] {
   // Node's Headers implementation returns all Set-Cookie headers joined by ', '
+  // TODO: Since dates are represented like "Wed, 12-Jul-2023 19:59:03 GMT", this will split too often!
   const cookieDefinitions = headers.get('set-cookie')?.trim().split(/\s*,\s*/) ?? []
 
   const cookies = []
@@ -21,7 +37,7 @@ export function parseCookies (headers: Headers): Cookie[] {
   return cookies
 }
 
-export function joinCookies (cookies: readonly Cookie[]): string {
+function joinCookies (cookies: readonly Cookie[]): string {
   // TODO: Properly escape this stuff.
   return cookies.map(({ key, value }) => `${key}=${value}`).join('; ')
 }
