@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/meyfa/get-some-rest/compare/v0.2.0...v0.3.0) (2022-07-17)
+
+
+### Features
+
+* Support awaiting a request directly ([#10](https://github.com/meyfa/get-some-rest/issues/10)) ([956655c](https://github.com/meyfa/get-some-rest/commit/956655cd094d3a700d02e574a610ffc2afe3c64f))
+
 ## [0.2.0](https://github.com/meyfa/get-some-rest/compare/v0.1.0...v0.2.0) (2022-07-12)
 
 
