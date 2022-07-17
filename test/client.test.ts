@@ -40,7 +40,7 @@ describe('client.ts', function () {
         requestPassedToMiddleware2 = req
         return await next(requestAfterMiddleware2)
       })
-      await obj.request(originalRequest.method, '/', originalRequest.body).raw()
+      await obj.request(originalRequest.method, '/', originalRequest.body)
       expect(requestPassedToMiddleware1).to.deep.equal(originalRequest)
       expect(requestPassedToMiddleware2).to.equal(requestAfterMiddleware1)
       expect(requestPassedToAdapter).to.equal(requestAfterMiddleware2)
@@ -73,7 +73,7 @@ describe('client.ts', function () {
         responseInMiddleware2 = await next(req)
         return responseAfterMiddleware2
       })
-      const finalResponse = await obj.request('GET', '/').raw()
+      const finalResponse = await obj.request('GET', '/')
       expect(responseInMiddleware2).to.equal(adapterResponse)
       expect(responseInMiddleware1).to.equal(responseAfterMiddleware2)
       expect(finalResponse).to.equal(responseAfterMiddleware1)
