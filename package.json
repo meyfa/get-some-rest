@@ -1,6 +1,6 @@
 {
   "name": "get-some-rest",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A stateful HTTP client for NodeJS. Test your routes even when mocking is infeasible.",
   "type": "module",
   "main": "dist/index.js",
