@@ -27,14 +27,12 @@ async function processMiddleware (adapter: NetworkAdapter, request: Request, mid
 export function client (baseUrl: string | URL, adapter: NetworkAdapter): HttpClient {
   const middlewareStack: Middleware[] = []
 
-  const request: HttpClient['request'] = (verb, path, data) => requestFromAsync(async () => {
-    return await processMiddleware(adapter, {
-      url: new URL(path, baseUrl),
-      method: verb,
-      body: data,
-      headers: new Headers()
-    }, middlewareStack)
-  })
+  const request: HttpClient['request'] = (verb, path, data) => requestFromAsync(processMiddleware(adapter, {
+    url: new URL(path, baseUrl),
+    method: verb,
+    body: data,
+    headers: new Headers()
+  }, middlewareStack))
 
   return {
     request,
