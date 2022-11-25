@@ -7,6 +7,11 @@ export function memoryCookieStore (): CookieStore {
   return {
     cookies,
     putCookie (cookie) {
+      const existing = cookies.findIndex(c => c.key === cookie.key)
+      if (existing >= 0) {
+        cookies[existing] = cookie
+        return
+      }
       cookies.push(cookie)
     }
   }
