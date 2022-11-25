@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1](https://github.com/meyfa/get-some-rest/compare/v0.3.0...v0.3.1) (2022-11-25)
+
+
+### Bug Fixes
+
+* Allow cookies to be overwritten in memory store ([#36](https://github.com/meyfa/get-some-rest/issues/36)) ([be73ae8](https://github.com/meyfa/get-some-rest/commit/be73ae829df21a67fb18af5c21674f6401f11831))
+
 ## [0.3.0](https://github.com/meyfa/get-some-rest/compare/v0.2.0...v0.3.0) (2022-07-17)
 
 
