@@ -23,4 +23,20 @@ describe('stores/memory-cookie-store.ts', function () {
     store.putCookie(cookie2)
     expect(store.cookies).to.deep.equal([cookie, cookie2])
   })
+
+  it('overwrites cookies when key is identical', function () {
+    const store = memoryCookieStore()
+    const cookie = {
+      key: 'foo',
+      value: 'bar'
+    }
+    store.putCookie(cookie)
+    expect(store.cookies).to.deep.equal([cookie])
+    const cookie2 = {
+      key: 'foo',
+      value: 'baz'
+    }
+    store.putCookie(cookie2)
+    expect(store.cookies).to.deep.equal([cookie2])
+  })
 })
