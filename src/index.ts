@@ -14,6 +14,7 @@ export function statelessClient (baseUrl: string | URL): HttpClient {
 
 export interface StatefulHttpClient extends HttpClient {
   setCookie: (cookie: Cookie) => void
+  getCookie: (key: string) => string | undefined
 }
 
 export function statefulClient (baseUrl: string | URL): StatefulHttpClient {
@@ -23,6 +24,7 @@ export function statefulClient (baseUrl: string | URL): StatefulHttpClient {
   createdClient.use(cookieMiddleware(store))
 
   return Object.assign(createdClient, {
-    setCookie: (cookie: Cookie) => store.putCookie(cookie)
+    setCookie: (cookie: Cookie) => store.putCookie(cookie),
+    getCookie: (key: string) => store.cookies.find(c => c.key === key)?.value
   })
 }
