@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/meyfa/get-some-rest/compare/v0.3.1...v0.4.0) (2022-12-02)
+
+
+### Features
+
+* Add a `getCookie(key)` method to StatefulHttpClient ([#38](https://github.com/meyfa/get-some-rest/issues/38)) ([992a64e](https://github.com/meyfa/get-some-rest/commit/992a64e553cd1df4562f4d0ce103150a88dcbca5))
+* Support setting custom headers ([#40](https://github.com/meyfa/get-some-rest/issues/40)) ([655b9de](https://github.com/meyfa/get-some-rest/commit/655b9de966654461b175ba0ab426f8f3f21392e1))
+
 ## [0.3.1](https://github.com/meyfa/get-some-rest/compare/v0.3.0...v0.3.1) (2022-11-25)
 
 
