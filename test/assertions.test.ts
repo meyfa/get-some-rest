@@ -1,24 +1,24 @@
-import { expect } from 'chai'
+import assert from 'node:assert'
 import { assertStatus } from '../src/assertions.js'
 
 describe('assertions.ts', function () {
   describe('assertStatus()', function () {
     it('throws if status is not as expected', function () {
-      expect(() => assertStatus({
+      assert.throws(() => assertStatus({
         status: 200,
         headers: new Headers(),
         body: {}
-      }, 201)).to.throw()
-      expect(() => assertStatus({
+      }, 201))
+      assert.throws(() => assertStatus({
         status: 200,
         headers: new Headers(),
         body: {}
-      }, 400)).to.throw()
-      expect(() => assertStatus({
+      }, 400))
+      assert.throws(() => assertStatus({
         status: 500,
         headers: new Headers(),
         body: {}
-      }, 400)).to.throw()
+      }, 400))
     })
 
     it('returns without throwing if status is as expected', function () {

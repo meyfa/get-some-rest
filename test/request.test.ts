@@ -1,8 +1,5 @@
+import assert from 'node:assert'
 import { requestFromAsync } from '../src/request.js'
-import chai, { expect } from 'chai'
-import chaiAsPromised from 'chai-as-promised'
-
-chai.use(chaiAsPromised)
 
 describe('request.ts', function () {
   it('can be awaited to obtain the response object', async function () {
@@ -13,14 +10,14 @@ describe('request.ts', function () {
     }
     const obj = requestFromAsync(Promise.resolve(response))
     const awaitedResponse = await obj
-    expect(awaitedResponse).to.equal(response)
+    assert.strictEqual(awaitedResponse, response)
   })
 
   it('rejects if the input promise rejects', async function () {
     const rejected = Promise.reject(new Error('test reject'))
-    await expect(requestFromAsync(rejected)).to.eventually.be.rejectedWith('test reject')
+    await assert.rejects(Promise.resolve(requestFromAsync(rejected)), new Error('test reject'))
     const rejectSoon = new Promise<any>((resolve, reject) => setTimeout(() => reject(new Error('test reject')), 50))
-    await expect(requestFromAsync(rejectSoon)).to.eventually.be.rejectedWith('test reject')
+    await assert.rejects(Promise.resolve(requestFromAsync(rejectSoon)), new Error('test reject'))
   })
 
   describe('#expect()', function () {
@@ -30,7 +27,7 @@ describe('request.ts', function () {
         headers: new Headers(),
         body: 'hello world'
       }))
-      await expect(obj.expect(200)).to.eventually.equal('hello world')
+      assert.strictEqual(await obj.expect(200), 'hello world')
     })
 
     it('fails if status does not match expected', async function () {
@@ -39,14 +36,14 @@ describe('request.ts', function () {
         headers: new Headers(),
         body: 'hello world'
       }))
-      await expect(obj.expect(201)).to.eventually.be.rejected
+      await assert.rejects(obj.expect(201))
     })
 
     it('rejects if the input promise rejects', async function () {
       const rejected = Promise.reject(new Error('test reject'))
-      await expect(requestFromAsync(rejected).expect(200)).to.eventually.be.rejectedWith('test reject')
+      await assert.rejects(requestFromAsync(rejected).expect(200), new Error('test reject'))
       const rejectSoon = new Promise<any>((resolve, reject) => setTimeout(() => reject(new Error('test reject')), 50))
-      await expect(requestFromAsync(rejectSoon).expect(200)).to.eventually.be.rejectedWith('test reject')
+      await assert.rejects(requestFromAsync(rejectSoon).expect(200), new Error('test reject'))
     })
   })
 
@@ -58,14 +55,14 @@ describe('request.ts', function () {
         body: 'hello world'
       }
       const obj = requestFromAsync(Promise.resolve(response))
-      await expect(obj.raw()).to.eventually.equal(response)
+      assert.strictEqual(await obj.raw(), response)
     })
 
     it('rejects if the input promise rejects', async function () {
       const rejected = Promise.reject(new Error('test reject'))
-      await expect(requestFromAsync(rejected).raw()).to.eventually.be.rejectedWith('test reject')
+      await assert.rejects(requestFromAsync(rejected).raw(), new Error('test reject'))
       const rejectSoon = new Promise<any>((resolve, reject) => setTimeout(() => reject(new Error('test reject')), 50))
-      await expect(requestFromAsync(rejectSoon).raw()).to.eventually.be.rejectedWith('test reject')
+      await assert.rejects(requestFromAsync(rejectSoon).raw(), new Error('test reject'))
     })
   })
 })

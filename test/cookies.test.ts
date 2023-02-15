@@ -1,7 +1,7 @@
+import assert from 'node:assert'
 import { Middleware, Response } from '../src/index.js'
 import { cookieMiddleware } from '../src/cookies.js'
 import { voidCookieStore } from '../src/stores/void-cookie-store.js'
-import { expect } from 'chai'
 import { memoryCookieStore } from '../src/stores/memory-cookie-store.js'
 
 describe('cookies.ts', function () {
@@ -21,16 +21,16 @@ describe('cookies.ts', function () {
         }),
         body: 'hello world'
       }, async (modified) => {
-        expect(modified.url.toString()).to.equal('http://localhost/')
-        expect(modified.method).to.equal('GET')
-        expect(modified.body).to.equal('hello world')
-        expect(Array.from(modified.headers)).to.have.deep.members([
+        assert.strictEqual(modified.url.toString(), 'http://localhost/')
+        assert.strictEqual(modified.method, 'GET')
+        assert.strictEqual(modified.body, 'hello world')
+        assert.deepStrictEqual(Array.from(modified.headers), [
           ['x-test-header', 'test-header-value']
         ])
         return expectedResponse
       })
       // This implicitly ensures the middleware has called next(), otherwise it couldn't have gotten the response!
-      expect(middlewareResponse).to.equal(expectedResponse)
+      assert.strictEqual(middlewareResponse, expectedResponse)
     })
 
     it('sets the Cookie header if the store has cookies', async function () {
@@ -57,17 +57,17 @@ describe('cookies.ts', function () {
         }),
         body: 'hello world'
       }, async (modified) => {
-        expect(modified.url.toString()).to.equal('http://localhost/')
-        expect(modified.method).to.equal('GET')
-        expect(modified.body).to.equal('hello world')
-        expect(Array.from(modified.headers)).to.have.deep.members([
-          ['x-test-header', 'test-header-value'],
-          ['cookie', 'test-cookie=test-cookie-value; foo2=bar']
+        assert.strictEqual(modified.url.toString(), 'http://localhost/')
+        assert.strictEqual(modified.method, 'GET')
+        assert.strictEqual(modified.body, 'hello world')
+        assert.deepStrictEqual(Array.from(modified.headers), [
+          ['cookie', 'test-cookie=test-cookie-value; foo2=bar'],
+          ['x-test-header', 'test-header-value']
         ])
         return expectedResponse
       })
       // This implicitly ensures the middleware has called next(), otherwise it couldn't have gotten the response!
-      expect(middlewareResponse).to.equal(expectedResponse)
+      assert.strictEqual(middlewareResponse, expectedResponse)
     })
 
     it('puts cookies from response header Set-Cookie into the store', async function () {
@@ -89,17 +89,17 @@ describe('cookies.ts', function () {
         }),
         body: 'hello world'
       }, async (modified) => {
-        expect(modified.url.toString()).to.equal('http://localhost/')
-        expect(modified.method).to.equal('GET')
-        expect(modified.body).to.equal('hello world')
-        expect(Array.from(modified.headers)).to.have.deep.members([
+        assert.strictEqual(modified.url.toString(), 'http://localhost/')
+        assert.strictEqual(modified.method, 'GET')
+        assert.strictEqual(modified.body, 'hello world')
+        assert.deepStrictEqual(Array.from(modified.headers), [
           ['x-test-header', 'test-header-value']
         ])
         return expectedResponse
       })
       // This implicitly ensures the middleware has called next(), otherwise it couldn't have gotten the response!
-      expect(middlewareResponse).to.equal(expectedResponse)
-      expect(store.cookies).to.have.deep.members([
+      assert.strictEqual(middlewareResponse, expectedResponse)
+      assert.deepStrictEqual(store.cookies, [
         {
           key: 'cookie1',
           value: 'value1'
