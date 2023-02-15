@@ -1,18 +1,18 @@
-import { expect } from 'chai'
+import assert from 'node:assert'
 import { voidCookieStore } from '../../src/stores/void-cookie-store.js'
 import { Cookie } from '../../src/index.js'
 
 describe('stores/void-cookie-store.ts', function () {
   it('initially returns empty cookies array', function () {
     const cookies: readonly Cookie[] = voidCookieStore().cookies
-    expect(cookies).to.have.lengthOf(0)
+    assert.strictEqual(cookies.length, 0)
   })
 
   it('does not allow writing to cookies array', function () {
     const cookies: readonly Cookie[] = voidCookieStore().cookies
-    expect(() => {
+    assert.throws(() => {
       (cookies as any).push({})
-    }).to.throw()
+    })
   })
 
   it('does nothing when trying to store a cookie', function () {
@@ -21,6 +21,6 @@ describe('stores/void-cookie-store.ts', function () {
       key: 'foo',
       value: 'bar'
     })
-    expect(store.cookies).to.have.lengthOf(0)
+    assert.strictEqual(store.cookies.length, 0)
   })
 })
