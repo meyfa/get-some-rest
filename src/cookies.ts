@@ -8,9 +8,9 @@ export interface Cookie {
 
 export function cookieMiddleware (store: CookieStore): Middleware {
   return async (req, next) => {
-    const cookieString = joinCookies(store.cookies)
-    if (cookieString !== '') {
-      req.headers.set('cookie', cookieString)
+    for (const { key, value } of store.cookies) {
+      // TODO: Properly escape this stuff.
+      req.headers.append('cookie', `${key}=${value}`)
     }
     const res = await next(req)
     parseCookies(res.headers).forEach((cookie) => store.putCookie(cookie))
@@ -35,9 +35,4 @@ function parseCookies (headers: Headers): Cookie[] {
   }
 
   return cookies
-}
-
-function joinCookies (cookies: readonly Cookie[]): string {
-  // TODO: Properly escape this stuff.
-  return cookies.map(({ key, value }) => `${key}=${value}`).join('; ')
 }
