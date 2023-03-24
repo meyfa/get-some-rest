@@ -8,5 +8,7 @@ A stateful HTTP client for NodeJS. Test your routes even when mocking is infeasi
 
 ## Usage
 
-This package requires Node version 18 or later because it makes use of native `fetch()`.
+This package requires Node version 18.14.2 or later because it makes use of native `fetch()`,
+as well as `Headers.prototype.getSetCookie`.
+
 Additionally, it is packaged as an ES module only, so your tests have to be in ESM format, too.
