@@ -75,10 +75,11 @@ describe('cookies.ts', function () {
       const middleware: Middleware = cookieMiddleware(store)
       const expectedResponse: Response = {
         status: 200,
-        headers: new Headers({
-          // TODO: Change this to be valid (not comma separated, but repeated Set-Cookie) once Node supports it.
-          'set-cookie': 'cookie1=value1; Expires=Mon, 12-Jul-2022; Secure, cookie2=value2; Secure; HttpOnly, cookie3=value3'
-        }),
+        headers: new Headers([
+          ['set-cookie', 'cookie1=value1; Expires=Mon, 12-Jul-2022; Secure'],
+          ['set-cookie', 'cookie2=value2; Secure; HttpOnly'],
+          ['set-cookie', 'cookie3=value3']
+        ]),
         body: 'response body'
       }
       const middlewareResponse = await middleware({
