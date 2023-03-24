@@ -19,12 +19,9 @@ export function cookieMiddleware (store: CookieStore): Middleware {
 }
 
 function parseCookies (headers: Headers): Cookie[] {
-  // Node's Headers implementation returns all Set-Cookie headers joined by ', '
-  // TODO: Since dates are represented like "Wed, 12-Jul-2023 19:59:03 GMT", this will split too often!
-  const cookieDefinitions = headers.get('set-cookie')?.trim().split(/\s*,\s*/) ?? []
-
   const cookies = []
-  for (const cookieDefinition of cookieDefinitions) {
+  // Note: Headers.prototype.getSetCookie() is available since Node.js 18.14.1, but types aren't updated yet.
+  for (const cookieDefinition of (headers as any).getSetCookie() as readonly string[]) {
     // TODO: Handle malformed strings, quoted values, escaping.
     // TODO: Parse expiration date and flags.
     const key = cookieDefinition.match(/^([^=\s]+)/)?.[1]
@@ -33,6 +30,5 @@ function parseCookies (headers: Headers): Cookie[] {
       cookies.push({ key, value })
     }
   }
-
   return cookies
 }
