@@ -6,6 +6,8 @@ import { memoryCookieStore } from '../src/stores/memory-cookie-store.js'
 
 describe('cookies.ts', function () {
   describe('cookieMiddleware()', function () {
+    const nextYear = new Date().getFullYear() + 1
+
     it('calls next() with unmodified request if the store has no cookies', async function () {
       const middleware: Middleware = cookieMiddleware(voidCookieStore())
       const expectedResponse: Response = {
@@ -76,7 +78,7 @@ describe('cookies.ts', function () {
       const expectedResponse: Response = {
         status: 200,
         headers: new Headers([
-          ['set-cookie', 'cookie1=value1; Expires=Mon, 12-Jul-2022; Secure'],
+          ['set-cookie', `cookie1=value1; Expires=Mon, 12-Jul-${nextYear}; Secure`],
           ['set-cookie', 'cookie2=value2; Secure; HttpOnly'],
           ['set-cookie', 'cookie3=value3']
         ]),
@@ -103,15 +105,18 @@ describe('cookies.ts', function () {
       assert.deepStrictEqual(store.cookies, [
         {
           key: 'cookie1',
-          value: 'value1'
+          value: 'value1',
+          expires: new Date(nextYear, 6, 12)
         },
         {
           key: 'cookie2',
-          value: 'value2'
+          value: 'value2',
+          expires: undefined
         },
         {
           key: 'cookie3',
-          value: 'value3'
+          value: 'value3',
+          expires: undefined
         }
       ])
     })

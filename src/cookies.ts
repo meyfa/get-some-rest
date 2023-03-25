@@ -1,9 +1,11 @@
 import { CookieStore } from './stores/cookie-store.js'
 import { Middleware } from './client.js'
+import setCookieParser from 'set-cookie-parser'
 
 export interface Cookie {
   key: string
   value: string
+  expires?: Date
 }
 
 export function cookieMiddleware (store: CookieStore): Middleware {
@@ -22,13 +24,15 @@ function parseCookies (headers: Headers): Cookie[] {
   const cookies = []
   // Note: Headers.prototype.getSetCookie() is available since Node.js 18.14.1, but types aren't updated yet.
   for (const cookieDefinition of (headers as any).getSetCookie() as readonly string[]) {
-    // TODO: Handle malformed strings, quoted values, escaping.
-    // TODO: Parse expiration date and flags.
-    const key = cookieDefinition.match(/^([^=\s]+)/)?.[1]
-    const value = cookieDefinition.match(/^.*?=([^;=\s]+)/)?.[1]
-    if (key != null && value != null) {
-      cookies.push({ key, value })
+    const parsedCookie = setCookieParser.parseString(cookieDefinition)
+    if (parsedCookie == null) {
+      continue
     }
+    cookies.push({
+      key: parsedCookie.name,
+      value: parsedCookie.value,
+      expires: parsedCookie.expires
+    })
   }
   return cookies
 }

@@ -2,10 +2,14 @@ import { Cookie } from '../cookies.js'
 import { CookieStore } from './cookie-store.js'
 
 export function memoryCookieStore (): CookieStore {
-  const cookies: Cookie[] = []
+  let cookies: Cookie[] = []
 
   return {
-    cookies,
+    get cookies () {
+      const now = new Date()
+      cookies = cookies.filter(c => c.expires == null || c.expires >= now)
+      return cookies
+    },
     putCookie (cookie) {
       const existing = cookies.findIndex(c => c.key === cookie.key)
       if (existing >= 0) {
