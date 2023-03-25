@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.5.0](https://github.com/meyfa/get-some-rest/compare/v0.4.0...v0.5.0) (2023-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* Engine version requirement raised to Node `>=18.14.2`.
+
+### Features
+
+* Parse "Expires" cookie attribute ([#69](https://github.com/meyfa/get-some-rest/issues/69)) ([e6ef2c5](https://github.com/meyfa/get-some-rest/commit/e6ef2c538c3c8daea11042ccf19c464ec358c7ef))
+
+
+### Bug Fixes
+
+* Use `Headers.prototype.append` for 'cookie' header ([#65](https://github.com/meyfa/get-some-rest/issues/65)) ([286ba27](https://github.com/meyfa/get-some-rest/commit/286ba27141c1e16b4bcb3d59f9b60e368ce67d01))
+* Use `Headers.prototype.getSetCookie` to avoid comma-splitting ([#67](https://github.com/meyfa/get-some-rest/issues/67)) ([1541794](https://github.com/meyfa/get-some-rest/commit/154179401a28189bc73edafe43c5c9385db7379e))
+
 ## [0.4.0](https://github.com/meyfa/get-some-rest/compare/v0.3.1...v0.4.0) (2022-12-02)
 
 
