@@ -41,7 +41,7 @@
     "@meyfa/eslint-config": "3.0.1",
     "@types/mocha": "10.0.1",
     "@types/node": "18.16.18",
-    "@types/set-cookie-parser": "2.4.2",
+    "@types/set-cookie-parser": "2.4.3",
     "c8": "8.0.0",
     "eslint": "8.44.0",
     "mocha": "10.2.0",
