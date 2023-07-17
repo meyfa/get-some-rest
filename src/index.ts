@@ -3,10 +3,10 @@ import { memoryCookieStore } from './stores/memory-cookie-store.js'
 import { fetchNetworkAdapter } from './adapters/fetch-network-adapter.js'
 import { Cookie, cookieMiddleware } from './cookies.js'
 
-export { HttpVerb, CaseInsensitiveHttpVerb, Request, Response } from './adapters/network-adapter.js'
-export { HttpClient, RequestMethod, RequestMethodWithData, Middleware } from './client.js'
-export { HttpRequest } from './request.js'
-export { Cookie } from './cookies.js'
+export type { HttpVerb, CaseInsensitiveHttpVerb, Request, Response } from './adapters/network-adapter.js'
+export type { HttpClient, RequestMethod, RequestMethodWithData, Middleware } from './client.js'
+export type { HttpRequest } from './request.js'
+export type { Cookie } from './cookies.js'
 
 export function statelessClient (baseUrl: string | URL): HttpClient {
   return client(baseUrl, fetchNetworkAdapter())
