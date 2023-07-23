@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.5.1](https://github.com/meyfa/get-some-rest/compare/v0.5.0...v0.5.1) (2023-07-23)
+
+
+### Bug Fixes
+
+* Export types with "export type" for clarity ([#90](https://github.com/meyfa/get-some-rest/issues/90)) ([f66cb61](https://github.com/meyfa/get-some-rest/commit/f66cb612f38f5deac36513cfd14867d9c50491d2))
+
+
+### Miscellaneous Chores
+
+* Publish with provenance ([#92](https://github.com/meyfa/get-some-rest/issues/92)) ([bee0157](https://github.com/meyfa/get-some-rest/commit/bee0157b4f50b8af67a56b62de57f530f046f31a))
+
 ## [0.5.0](https://github.com/meyfa/get-some-rest/compare/v0.4.0...v0.5.0) (2023-03-25)
 
 
