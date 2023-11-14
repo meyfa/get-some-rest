@@ -11,8 +11,7 @@ export interface Cookie {
 export function cookieMiddleware (store: CookieStore): Middleware {
   return async (req, next) => {
     for (const { key, value } of store.cookies) {
-      // TODO: Properly escape this stuff.
-      req.headers.append('cookie', `${key}=${value}`)
+      req.headers.append('cookie', `${key}=${encodeURIComponent(value)}`)
     }
     const res = await next(req)
     parseCookies(res.headers).forEach((cookie) => store.putCookie(cookie))
