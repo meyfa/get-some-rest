@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.2](https://github.com/meyfa/get-some-rest/compare/v0.5.1...v0.5.2) (2023-11-14)
+
+
+### Bug Fixes
+
+* Call `encodeURIComponent` on cookie value for request ([#121](https://github.com/meyfa/get-some-rest/issues/121)) ([7236ebf](https://github.com/meyfa/get-some-rest/commit/7236ebf114d1ce0f9b354226faa91a20bc0a209f))
+
 ## [0.5.1](https://github.com/meyfa/get-some-rest/compare/v0.5.0...v0.5.1) (2023-07-23)
 
 
