@@ -47,7 +47,7 @@
     "mocha": "10.2.0",
     "ts-node": "10.9.2",
     "typescript": "5.3.3",
-    "undici": "6.2.1"
+    "undici": "6.4.0"
   },
   "dependencies": {
     "set-cookie-parser": "2.6.0"
