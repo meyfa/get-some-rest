@@ -38,7 +38,7 @@
   },
   "homepage": "https://github.com/meyfa/get-some-rest#readme",
   "devDependencies": {
-    "@meyfa/eslint-config": "6.0.0",
+    "@meyfa/eslint-config": "7.0.0",
     "@types/mocha": "10.0.7",
     "@types/node": "20.14.11",
     "@types/set-cookie-parser": "2.4.10",
