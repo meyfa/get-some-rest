@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.3](https://github.com/meyfa/get-some-rest/compare/v0.5.2...v0.5.3) (2024-10-13)
+
+
+### Bug Fixes
+
+* **deps:** update dependency set-cookie-parser to v2.7.0 ([#168](https://github.com/meyfa/get-some-rest/issues/168)) ([1ec7512](https://github.com/meyfa/get-some-rest/commit/1ec75125747018bff7beeedce63a38d3d9eac813))
+
 ## [0.5.2](https://github.com/meyfa/get-some-rest/compare/v0.5.1...v0.5.2) (2023-11-14)
 
 
