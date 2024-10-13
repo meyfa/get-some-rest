@@ -7,11 +7,11 @@ export function memoryCookieStore (): CookieStore {
   return {
     get cookies () {
       const now = new Date()
-      cookies = cookies.filter(c => c.expires == null || c.expires >= now)
+      cookies = cookies.filter((c) => c.expires == null || c.expires >= now)
       return cookies
     },
     putCookie (cookie) {
-      const existing = cookies.findIndex(c => c.key === cookie.key)
+      const existing = cookies.findIndex((c) => c.key === cookie.key)
       if (existing >= 0) {
         cookies[existing] = cookie
         return

@@ -25,6 +25,6 @@ export function statefulClient (baseUrl: string | URL): StatefulHttpClient {
 
   return Object.assign(createdClient, {
     setCookie: (cookie: Cookie) => store.putCookie(cookie),
-    getCookie: (key: string) => store.cookies.find(c => c.key === key)?.value
+    getCookie: (key: string) => store.cookies.find((c) => c.key === key)?.value
   })
 }

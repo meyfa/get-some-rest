@@ -4,7 +4,7 @@ export type CaseInsensitiveHttpVerb = Uppercase<HttpVerb> | Lowercase<HttpVerb>
 export interface Request {
   url: URL
   method: CaseInsensitiveHttpVerb
-  body?: any | undefined
+  body?: any
   headers: Headers
 }
 
