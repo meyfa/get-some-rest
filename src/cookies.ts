@@ -24,6 +24,7 @@ function parseCookies (headers: Headers): Cookie[] {
   // Note: Headers.prototype.getSetCookie() is available since Node.js 18.14.1, but types aren't updated yet.
   for (const cookieDefinition of (headers as any).getSetCookie() as readonly string[]) {
     const parsedCookie = setCookieParser.parseString(cookieDefinition)
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (parsedCookie == null) {
       continue
     }

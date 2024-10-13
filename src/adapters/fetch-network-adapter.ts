@@ -35,7 +35,7 @@ function transformRequestBody (data: any): undefined | string {
   return JSON.stringify(data)
 }
 
-async function parseBody (result: globalThis.Response): Promise<any | undefined> {
+async function parseBody (result: globalThis.Response): Promise<any> {
   if (result.body == null) {
     return undefined
   }

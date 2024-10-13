@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 module.exports = {
-  "loader": "ts-node/esm"
+  loader: 'ts-node/esm'
 }
