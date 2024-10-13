@@ -6,7 +6,6 @@
   "include": [
     "src",
     "test",
-    "eslint.config.js",
-    ".mocharc.cjs"
+    "eslint.config.js"
   ]
 }
