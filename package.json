@@ -43,7 +43,7 @@
     "@types/node": "20.16.11",
     "@types/set-cookie-parser": "2.4.10",
     "c8": "10.1.2",
-    "eslint": "9.12.0",
+    "eslint": "9.13.0",
     "mocha": "10.7.3",
     "tsx": "4.19.1",
     "typescript": "5.6.3",
