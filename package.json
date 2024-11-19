@@ -38,16 +38,16 @@
   },
   "homepage": "https://github.com/meyfa/get-some-rest#readme",
   "devDependencies": {
-    "@meyfa/eslint-config": "8.0.0",
+    "@meyfa/eslint-config": "8.0.1",
     "@types/mocha": "10.0.9",
     "@types/node": "22.9.0",
     "@types/set-cookie-parser": "2.4.10",
     "c8": "10.1.2",
-    "eslint": "9.14.0",
+    "eslint": "9.15.0",
     "mocha": "10.8.2",
     "tsx": "4.19.2",
     "typescript": "5.6.3",
-    "undici": "6.20.1"
+    "undici": "6.21.0"
   },
   "dependencies": {
     "set-cookie-parser": "2.7.1"
