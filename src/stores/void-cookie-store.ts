@@ -1,4 +1,4 @@
-import { CookieStore } from './cookie-store.js'
+import type { CookieStore } from './cookie-store.js'
 
 export function voidCookieStore (): CookieStore {
   return {

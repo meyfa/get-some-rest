@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { client } from '../src/client.js'
-import { Request, Response } from '../src/adapters/network-adapter.js'
+import type { Request, Response } from '../src/adapters/network-adapter.js'
 import { getGlobalDispatcher, MockAgent, setGlobalDispatcher } from 'undici'
 import { fetchNetworkAdapter } from '../src/adapters/fetch-network-adapter.js'
 

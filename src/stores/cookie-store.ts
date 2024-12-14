@@ -1,4 +1,4 @@
-import { Cookie } from '../cookies.js'
+import type { Cookie } from '../cookies.js'
 
 export interface CookieStore {
   readonly cookies: readonly Cookie[]

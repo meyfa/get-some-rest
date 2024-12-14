@@ -1,5 +1,5 @@
 import assert from 'node:assert'
-import { Middleware, Response } from '../src/index.js'
+import type { Middleware, Response } from '../src/index.js'
 import { cookieMiddleware } from '../src/cookies.js'
 import { voidCookieStore } from '../src/stores/void-cookie-store.js'
 import { memoryCookieStore } from '../src/stores/memory-cookie-store.js'

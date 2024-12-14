@@ -1,4 +1,4 @@
-import { Response } from './adapters/network-adapter.js'
+import type { Response } from './adapters/network-adapter.js'
 import { assertStatus } from './assertions.js'
 
 export interface HttpRequest<ResponseType = any> extends PromiseLike<Response<ResponseType>> {
