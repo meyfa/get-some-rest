@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { voidCookieStore } from '../../src/stores/void-cookie-store.js'
-import { Cookie } from '../../src/index.js'
+import type { Cookie } from '../../src/index.js'
 
 describe('stores/void-cookie-store.ts', function () {
   it('initially returns empty cookies array', function () {

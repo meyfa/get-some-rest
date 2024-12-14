@@ -1,6 +1,6 @@
 import assert from 'node:assert'
 import { memoryCookieStore } from '../../src/stores/memory-cookie-store.js'
-import { Cookie } from '../../src/index.js'
+import type { Cookie } from '../../src/index.js'
 import { setTimeout } from 'node:timers/promises'
 
 describe('stores/memory-cookie-store.ts', function () {

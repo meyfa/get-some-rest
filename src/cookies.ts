@@ -1,5 +1,5 @@
-import { CookieStore } from './stores/cookie-store.js'
-import { Middleware } from './client.js'
+import type { CookieStore } from './stores/cookie-store.js'
+import type { Middleware } from './client.js'
 import setCookieParser from 'set-cookie-parser'
 
 export interface Cookie {

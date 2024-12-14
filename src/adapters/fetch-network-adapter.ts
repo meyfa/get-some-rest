@@ -1,4 +1,4 @@
-import { NetworkAdapter, Request } from './network-adapter.js'
+import type { NetworkAdapter, Request } from './network-adapter.js'
 
 export function fetchNetworkAdapter (): NetworkAdapter {
   return {

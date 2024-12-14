@@ -1,5 +1,5 @@
-import { Cookie } from '../cookies.js'
-import { CookieStore } from './cookie-store.js'
+import type { Cookie } from '../cookies.js'
+import type { CookieStore } from './cookie-store.js'
 
 export function memoryCookieStore (): CookieStore {
   let cookies: Cookie[] = []

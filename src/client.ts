@@ -1,5 +1,5 @@
-import { CaseInsensitiveHttpVerb, NetworkAdapter, Request, Response } from './adapters/network-adapter.js'
-import { HttpRequest, requestFromAsync } from './request.js'
+import type { CaseInsensitiveHttpVerb, NetworkAdapter, Request, Response } from './adapters/network-adapter.js'
+import { type HttpRequest, requestFromAsync } from './request.js'
 
 export type Middleware = (request: Request, next: (modified: Request) => Promise<Response>) => PromiseLike<Response>
 

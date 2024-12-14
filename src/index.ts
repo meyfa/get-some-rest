@@ -1,7 +1,7 @@
-import { client, HttpClient } from './client.js'
+import { client, type HttpClient } from './client.js'
 import { memoryCookieStore } from './stores/memory-cookie-store.js'
 import { fetchNetworkAdapter } from './adapters/fetch-network-adapter.js'
-import { Cookie, cookieMiddleware } from './cookies.js'
+import { type Cookie, cookieMiddleware } from './cookies.js'
 
 export type { HttpVerb, CaseInsensitiveHttpVerb, Request, Response } from './adapters/network-adapter.js'
 export type { HttpClient, RequestMethod, RequestMethodWithData, Middleware } from './client.js'
