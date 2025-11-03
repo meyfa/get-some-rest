@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.6.0](https://github.com/meyfa/get-some-rest/compare/v0.5.2...v0.6.0) (2025-11-03)
+
+
+### Features
+
+* Enable TS option verbatimModuleSyntax ([#192](https://github.com/meyfa/get-some-rest/issues/192)) ([bcd017f](https://github.com/meyfa/get-some-rest/commit/bcd017f609f448c7dcf38e85c6e26d2051a8ef76))
+
+
+### Bug Fixes
+
+* **deps:** update dependency set-cookie-parser to v2.7.0 ([#168](https://github.com/meyfa/get-some-rest/issues/168)) ([1ec7512](https://github.com/meyfa/get-some-rest/commit/1ec75125747018bff7beeedce63a38d3d9eac813))
+* **deps:** update dependency set-cookie-parser to v2.7.1 ([#184](https://github.com/meyfa/get-some-rest/issues/184)) ([7ff6736](https://github.com/meyfa/get-some-rest/commit/7ff67368d1d0580305dc02b8148baaa3814bf039))
+
 ## [0.5.2](https://github.com/meyfa/get-some-rest/compare/v0.5.1...v0.5.2) (2023-11-14)
 
 
