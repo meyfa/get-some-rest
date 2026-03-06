@@ -17,7 +17,7 @@
     "prepack": "npm run build"
   },
   "engines": {
-    "node": ">=18.14.2"
+    "node": ">=22.18.0"
   },
   "repository": {
     "type": "git",
@@ -43,11 +43,11 @@
     "@types/node": "24.12.0",
     "@types/set-cookie-parser": "2.4.10",
     "c8": "11.0.0",
-    "eslint": "9.27.0",
-    "mocha": "11.3.0",
-    "tsx": "4.19.4",
-    "typescript": "5.8.3",
-    "undici": "7.9.0"
+    "eslint": "9.39.3",
+    "mocha": "11.7.5",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "undici": "7.22.0"
   },
   "dependencies": {
     "set-cookie-parser": "3.0.1"
