@@ -50,6 +50,6 @@
     "undici": "7.9.0"
   },
   "dependencies": {
-    "set-cookie-parser": "2.7.1"
+    "set-cookie-parser": "2.7.2"
   }
 }
